@@ -23,13 +23,13 @@ public class SeleniumCreditCardTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         ChromeDriver driver = new ChromeDriver(options);
 
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Владимир Чернов");
-        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79151231213");
-        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Владимир Чернов");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79151231213");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("[type = button]")).click();
         String correctInscription = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", correctInscription.trim());
